@@ -1,10 +1,8 @@
+import axios from "axios";
+axios.interceptors.response.use((res) => {
+  if (Math.random() > 0.5) return res.data;
+  else throw new Error("服务器500");
+});
 export const getUser = function getUser() {
-  return new Promise((res, rej) => {
-    setTimeout(() => {
-      const num = Math.random();
-      console.log(num);
-      if (num > 0.5) rej("请求失败!");
-      else res({ name: "tony", age: 28 });
-    }, 1000);
-  });
+  return axios.get("http://localhost:5050/api/user");
 };

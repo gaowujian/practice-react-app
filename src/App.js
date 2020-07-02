@@ -1,23 +1,15 @@
 import React from "react";
-import useMyAsync from "./useMyAsync";
-
+import useSWR from "swr";
+import { getUser } from "./service";
 function App() {
-  const [loading, name, age, getData] = useMyAsync();
+  const { data, error } = useSWR("/api/user", getUser);
+  console.log(data, error);
+  if (error) return <div>failed to load</div>;
+  if (!data) return <div>loading...</div>;
   return (
     <div>
-      <h1>显示用户状态</h1>
-      {!loading ? (
-        <div>
-          <h2>用户姓名:{name}</h2>
-          <h2>用户年龄:{age}</h2>
-        </div>
-      ) : (
-        "加载中"
-      )}
-      <hr />
-      <button onClick={getData}>重新获取数据</button>
+      hello {data.user} {data.age}!
     </div>
   );
 }
-
 export default App;
