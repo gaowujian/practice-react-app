@@ -1,13 +1,23 @@
 import React from "react";
+import useMyAsync from "./useMyAsync";
 
-const style = {
-  height: "100vh",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-};
 function App() {
-  return <div style={style}>一个默认的本地空白项目用于练习各种不同的想法</div>;
+  const [loading, name, age, getData] = useMyAsync();
+  return (
+    <div>
+      <h1>显示用户状态</h1>
+      {!loading ? (
+        <div>
+          <h2>用户姓名:{name}</h2>
+          <h2>用户年龄:{age}</h2>
+        </div>
+      ) : (
+        "加载中"
+      )}
+      <hr />
+      <button onClick={getData}>重新获取数据</button>
+    </div>
+  );
 }
 
 export default App;
