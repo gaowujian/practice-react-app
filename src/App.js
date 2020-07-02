@@ -1,21 +1,19 @@
 import React from "react";
-import { useAsync } from "react-use";
 import { getUser } from "./service";
+// import { useRequest } from "ahooks";
+import { useRequest } from "@umijs/hooks";
 const App = () => {
-  const state = useAsync(getUser, []);
-  console.log(state);
+  const { data, error, loading } = useRequest(getUser);
+  console.log(data, error, loading);
+  if (error) {
+    return <div>failed to load</div>;
+  }
+  if (loading) {
+    return <div>loading...</div>;
+  }
   return (
     <div>
-      {state.loading ? (
-        <div>Loading...</div>
-      ) : state.error ? (
-        <div>Error: {state.error.message}</div>
-      ) : (
-        <div>
-          <h2>user: {state.value.user}</h2>
-          <h2>age:{state.value.age}</h2>
-        </div>
-      )}
+      Username: {data.name} userage: {data.age}
     </div>
   );
 };
