@@ -1,8 +1,12 @@
 import React from "react";
-import { combineReducers, createStore } from "redux";
+import { combineReducers, createStore, applyMiddleware } from "redux";
 import ReactDOM from "react-dom";
 import { Provider, connect } from "react-redux";
+import createSagaMiddleware from "redux-saga";
+import * as sagaEffects from "redux-saga/effects";
+// import { createHashHistory } from "history";
 export { connect };
+
 export default function () {
   const app = {
     // 存放定义的模型
@@ -20,6 +24,7 @@ export default function () {
     app._router = routerConfig;
   }
   function start(containerId) {
+    // let history = createHashHistory();
     let reducers = {
       number: 20,
     };
@@ -40,7 +45,21 @@ export default function () {
       };
     }
     let rootReducer = combineReducers(reducers);
-    const store = createStore(rootReducer);
+    let sagaMiddleware = createSagaMiddleware();
+    const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+    function* rootSaga(params) {
+      const { takeEvery } = sagaEffects;
+      for (const model of app._models) {
+        const effects = model.effects;
+        for (const key in effects) {
+          // key = asynadd
+          yield takeEvery(`${model.namespace}/${key}`, function* (action) {
+            yield effects[key](action, sagaEffects);
+          });
+        }
+      }
+    }
+    sagaMiddleware.run(rootSaga);
     const App = app._router();
     ReactDOM.render(
       <Provider store={store}>{App}</Provider>,
