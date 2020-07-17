@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import { Provider, connect } from "react-redux";
 import createSagaMiddleware from "redux-saga";
 import * as sagaEffects from "redux-saga/effects";
-// import { createHashHistory } from "history";
+import { createHashHistory } from "history";
 export { connect };
 
 export default function () {
@@ -24,7 +24,6 @@ export default function () {
     app._router = routerConfig;
   }
   function start(containerId) {
-    // let history = createHashHistory();
     let reducers = {
       number: 20,
     };
@@ -60,7 +59,27 @@ export default function () {
       }
     }
     sagaMiddleware.run(rootSaga);
-    const App = app._router();
+    let history = createHashHistory();
+    const App = app._router({ history });
+
+    // function HOC(App) {
+    //   return class HOCComponent extends React.Component {
+    //     constructor(props) {
+    //       super(props);
+    //     }
+    //     render() {
+    //       console.log(App);
+    //       return <div>{App}</div>;
+    //     }
+    //     componentDidMount() {
+    //       console.log("jianting");
+    //       this.props.history.listen(() => {
+    //         this.setState();
+    //       });
+    //     }
+    //   };
+    // }
+
     ReactDOM.render(
       <Provider store={store}>{App}</Provider>,
       document.querySelector(containerId)

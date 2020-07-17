@@ -1,8 +1,11 @@
 import React from "react";
-import dva, { connect } from "./dva";
+import dva, { connect } from "dva";
+import { Router, Route, Link } from "./dva/router";
 
 let app = dva();
-
+window.addEventListener("hashchange", () => {
+  console.log("change");
+});
 function delay(time) {
   return new Promise(function (resolve) {
     setTimeout(() => {
@@ -10,6 +13,7 @@ function delay(time) {
     }, time);
   });
 }
+
 app.model({
   namespace: "counter",
   state: { number: 20 },
@@ -23,9 +27,7 @@ app.model({
   },
   effects: {
     *asyncAdd(action, { call, put }) {
-      console.log("11");
       yield call(delay, 1000);
-      console.log("22");
       yield put({ type: "counter/add" });
     },
   },
@@ -60,5 +62,20 @@ const Counter = connect((state) => state.counter)((props) => {
   );
 });
 
-app.router(() => <Counter />);
+function Home() {
+  return <div>我是主页</div>;
+}
+
+app.router(({ history }) => {
+  console.log(history);
+  return (
+    <Router history={history}>
+      <Link to="/">主页</Link>
+      <br />
+      <Link to="/counter">counter</Link>
+      <Route path="/" exact component={Home} />
+      <Route path="/counter" exact component={Counter} />
+    </Router>
+  );
+});
 app.start("#root");
