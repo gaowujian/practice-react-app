@@ -1,12 +1,11 @@
-import element from "./fiberElement";
-let container = document.getElementById("root");
+import fiberElement from "./fiberElement";
 
 // 根fiber永远不变
 // let rootFiber = {
 //   stateNode: container,
 //   props: { children: [element] },
 // };
-let rootFiber = element;
+let rootFiber = fiberElement;
 
 // 表示正在处理的fiber对象
 let nextUnitOfWork = rootFiber;
@@ -34,10 +33,7 @@ function performUnitOfWork(currentFiber) {
     if (currentFiber.sibling) {
       return currentFiber.sibling;
     }
-    // 没有儿子也没兄弟,让currentFiber指向父亲先去完成任务
-    // 之后再看父亲有没有弟弟，有弟弟的话就返回，让叔叔去开始执行任务
-    // 如果父亲也没有弟弟, 再让currentFiber指向爷爷，让爷爷先完成才任务
-    // 再查看爷爷有没有弟弟
+    // 没有儿子也没兄弟,修改currentFiber指向叔叔,递归向上完成工作
     currentFiber = currentFiber.return;
   }
   //执行到这里的时候，说明执行完currentFiber = currentFiber.return之后， currentFiber为空，
@@ -46,8 +42,7 @@ function performUnitOfWork(currentFiber) {
   commitRoot();
 }
 
-// 1. 根据vdom创建子fiber，主要是vdom中的children属性
-// 2. 创建真实dom元素，并绑定到fiber上，但是还没有到挂载渲染阶段
+//根据vdom创建fiber
 function beginWork(currentFiber) {
   console.log(`${currentFiber.key} 开始`);
 }
