@@ -9,12 +9,12 @@ let lastStates = [];
 let index = 0;
 function useState(initial) {
   lastStates[index] = lastStates[index] || initial;
-  //   let currentIndex = index;
+  let currentIndex = index;
   function setState(newState) {
     if (typeof newState === "function") {
       newState = newState(lastStates[index]);
     }
-    lastStates[index] = newState;
+    lastStates[currentIndex] = newState;
     render();
   }
 
