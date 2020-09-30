@@ -8,9 +8,10 @@ import { memo } from "react";
 let lastStates = [];
 let index = 0;
 function useState(initial) {
-  let lastState = lastStates[index] || initial;
+  lastStates[index] = lastStates[index] || initial;
+  const currentIndex = index;
   function setNumber(number) {
-    lastState = number;
+    lastStates[currentIndex] = number;
     render();
   }
   return [lastStates[index++], setNumber];
@@ -111,6 +112,7 @@ function App() {
 }
 
 function render() {
+  index = 0;
   ReactDOM.render(<App />, document.getElementById("root"));
 }
 
