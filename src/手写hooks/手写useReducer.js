@@ -17,9 +17,15 @@ function useReducer(reducer, initialState) {
   }
   return [lastState, dispatch];
 }
-
+let lastState11;
+let lastDispatch;
 function Counter() {
   const [state, dispatch] = useReducer(reducer, { number: 0 });
+  console.log("lastState11===state", lastState11 === state);
+  lastState11 = state;
+  console.log("lastDispatch===dispatch", lastDispatch === dispatch);
+  lastDispatch = dispatch;
+
   return (
     <div>
       <p>{state.number}</p>

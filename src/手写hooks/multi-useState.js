@@ -5,14 +5,15 @@ import { Fragment } from "react";
 import { memo } from "react";
 // import { useState } from "react";
 
-let lastState;
+let lastStates = [];
+let index = 0;
 function useState(initial) {
-  lastState = lastState || initial;
+  let lastState = lastStates[index] || initial;
   function setNumber(number) {
     lastState = number;
     render();
   }
-  return [lastState, setNumber];
+  return [lastStates[index++], setNumber];
 }
 
 let lastCallback;
