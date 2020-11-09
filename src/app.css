@@ -1,0 +1,38 @@
+.todo-app {
+  width: 550px;
+  margin: 50px auto;
+  padding: 20px 40px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), -2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.control h1 {
+  text-align: center;
+}
+.control input {
+  outline: none;
+  line-height: 30px;
+  font-size: 30px;
+  border: none;
+  width: 100%;
+}
+
+.todos {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+}
+
+.todo-item label {
+  line-height: 30px;
+  margin-left: 20px;
+  margin-right: auto;
+}
+
+.todos .complete {
+  text-decoration: line-through;
+}
