@@ -2,25 +2,18 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import "./app.css";
 import * as actions from "./actions";
 
-function Control({ dispatch }) {
+function Control({ addTodo }) {
   const textRef = useRef(null);
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      //   addTodo({
-      //     content: textRef.current.value,
-      //     id: Date.now(),
-      //     complete: false,
-      //   });
-      dispatch(
-        actions.createAdd({
-          content: textRef.current.value,
-          id: Date.now(),
-          complete: false,
-        })
-      );
+      addTodo({
+        content: textRef.current.value,
+        id: Date.now(),
+        complete: false,
+      });
     },
-    [dispatch]
+    [addTodo]
   );
   return (
     <div className="control">
@@ -33,7 +26,7 @@ function Control({ dispatch }) {
 }
 
 function Todos(props) {
-  const { todos, dispatch } = props;
+  const { todos, removeTodo, toggleTodo } = props;
 
   return (
     <ul className="todos">
@@ -43,7 +36,7 @@ function Todos(props) {
             <input
               type="checkbox"
               checked={todo.complete}
-              onChange={() => dispatch(actions.createToggle(todo.id))}
+              onChange={() => toggleTodo(todo.id)}
             />
             <label htmlFor="" className={todo.complete ? "complete" : null}>
               {todo.content}
@@ -51,7 +44,7 @@ function Todos(props) {
             <span
               dangerouslySetInnerHTML={{ __html: "&cross;" }}
               onClick={() => {
-                dispatch(actions.createRemove(todo.id));
+                removeTodo(todo.id);
               }}
             ></span>
           </li>
@@ -59,6 +52,27 @@ function Todos(props) {
       })}
     </ul>
   );
+}
+
+// 我们的目的是两个
+// 1. 依然保持现在代码的整洁行，行为描述和逻辑是分开的,
+//   意思就是把逻辑抽象成行为函数，我们只需要调用函数
+// 2. 简化dispatch(actions.createRemove(todo.id))这种语法
+// 我们可以直接 removeTodo(todo.id)
+
+// actionCreators 形如 {xx:createAdd,xx:createToggle}
+function bindActionCreators(actionCreators, dispatch) {
+  const result = {};
+  for (const key in actionCreators) {
+    result[key] = function (...args) {
+      const actionCreator = actionCreators[key];
+      //  该函数返回一个对象，代表一个描述多种行为函数的结合，
+      // 可以帮我们自动去创建action，并dispatch该action
+      const action = actionCreator(...args);
+      dispatch(action);
+    };
+  }
+  return result;
 }
 
 export default function App() {
@@ -90,25 +104,6 @@ export default function App() {
         break;
     }
   }, []);
-
-  //   const addTodo = useCallback(
-  //     (todo) => {
-  //       dispatch({ type: "add", payload: todo });
-  //     },
-  //     [dispatch]
-  //   );
-  //   const removeTodo = useCallback(
-  //     (id) => {
-  //       dispatch({ type: "add", payload: id });
-  //     },
-  //     [dispatch]
-  //   );
-  //   const toggleTodo = useCallback(
-  //     (id) => {
-  //       dispatch({ type: "add", payload: id });
-  //     },
-  //     [dispatch]
-  //   );
   useEffect(() => {
     const todos = JSON.parse(localStorage.getItem("_todos")) || [];
     dispatch(actions.createSet(todos));
@@ -119,8 +114,20 @@ export default function App() {
 
   return (
     <div className="todo-app">
-      <Control dispatch={dispatch} />
-      <Todos todos={todos} dispatch={dispatch} />
+      <Control
+        {...bindActionCreators({ addTodo: actions.createAdd }, dispatch)}
+      />
+      <Todos
+        todos={todos}
+        {...bindActionCreators(
+          {
+            setTodo: actions.createSet,
+            removeTodo: actions.createRemove,
+            toggleTodo: actions.createToggle,
+          },
+          dispatch
+        )}
+      />
     </div>
   );
 }
