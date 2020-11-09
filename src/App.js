@@ -8,18 +8,26 @@ import React, {
   useState,
 } from "react";
 import "./app.css";
-function Control({ addTodo }) {
+function Control({ dispatch }) {
   const textRef = useRef(null);
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      addTodo({
-        content: textRef.current.value,
-        id: Date.now(),
-        complete: false,
+      //   addTodo({
+      //     content: textRef.current.value,
+      //     id: Date.now(),
+      //     complete: false,
+      //   });
+      dispatch({
+        type: "add",
+        payload: {
+          content: textRef.current.value,
+          id: Date.now(),
+          complete: false,
+        },
       });
     },
-    [addTodo]
+    [dispatch]
   );
   return (
     <div className="control">
@@ -32,7 +40,7 @@ function Control({ addTodo }) {
 }
 
 function Todos(props) {
-  const { todos, removeTodo, toggleTodo } = props;
+  const { todos, dispatch } = props;
   return (
     <ul className="todos">
       {todos.map((todo) => {
@@ -41,7 +49,7 @@ function Todos(props) {
             <input
               type="checkbox"
               checked={todo.complete}
-              onChange={() => toggleTodo(todo.id)}
+              onChange={() => dispatch({ type: "toggle", payload: todo.id })}
             />
             <label htmlFor="" className={todo.complete ? "complete" : null}>
               {todo.content}
@@ -49,7 +57,7 @@ function Todos(props) {
             <span
               dangerouslySetInnerHTML={{ __html: "&cross;" }}
               onClick={() => {
-                removeTodo(todo.id);
+                dispatch({ type: "remove", payload: todo.id });
               }}
             ></span>
           </li>
@@ -62,34 +70,63 @@ function Todos(props) {
 export default function App() {
   const [todos, setTodos] = useState([]);
 
-  const addTodo = useCallback((todo) => {
-    setTodos((todos) => [...todos, todo]);
+  const dispatch = useCallback((action) => {
+    const { type, payload } = action;
+    switch (type) {
+      case "set":
+        setTodos(payload);
+        break;
+      case "add":
+        setTodos((todos) => [...todos, payload]);
+        break;
+      case "remove":
+        setTodos((todos) => todos.filter((todo) => todo.id !== payload));
+        break;
+      case "toggle":
+        setTodos((todos) =>
+          todos.map((todo) => {
+            if (todo.id === payload) {
+              todo.complete = !todo.complete;
+            }
+            return todo;
+          })
+        );
+        break;
+      default:
+        break;
+    }
   }, []);
-  const removeTodo = useCallback((id) => {
-    setTodos((todos) => todos.filter((todo) => todo.id !== id));
-  }, []);
-  const toggleTodo = useCallback((id) => {
-    setTodos((todos) =>
-      todos.map((todo) => {
-        if (todo.id === id) {
-          todo.complete = !todo.complete;
-        }
-        return todo;
-      })
-    );
-  }, []);
+
+  //   const addTodo = useCallback(
+  //     (todo) => {
+  //       dispatch({ type: "add", payload: todo });
+  //     },
+  //     [dispatch]
+  //   );
+  //   const removeTodo = useCallback(
+  //     (id) => {
+  //       dispatch({ type: "add", payload: id });
+  //     },
+  //     [dispatch]
+  //   );
+  //   const toggleTodo = useCallback(
+  //     (id) => {
+  //       dispatch({ type: "add", payload: id });
+  //     },
+  //     [dispatch]
+  //   );
   useEffect(() => {
     const todos = JSON.parse(localStorage.getItem("_todos")) || [];
-    setTodos(todos);
-  }, []);
+    dispatch({ type: "set", payload: todos });
+  }, [dispatch]);
   useEffect(() => {
     localStorage.setItem("_todos", JSON.stringify(todos));
   }, [todos]);
 
   return (
     <div className="todo-app">
-      <Control addTodo={addTodo} />
-      <Todos todos={todos} removeTodo={removeTodo} toggleTodo={toggleTodo} />
+      <Control dispatch={dispatch} />
+      <Todos todos={todos} dispatch={dispatch} />
     </div>
   );
 }
