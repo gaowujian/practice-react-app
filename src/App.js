@@ -1,13 +1,7 @@
-import React, {
-  Fragment,
-  useCallback,
-  useEffect,
-  useMemo,
-  useReducer,
-  useRef,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import "./app.css";
+import * as actions from "./actions";
+
 function Control({ dispatch }) {
   const textRef = useRef(null);
   const onSubmit = useCallback(
@@ -18,14 +12,13 @@ function Control({ dispatch }) {
       //     id: Date.now(),
       //     complete: false,
       //   });
-      dispatch({
-        type: "add",
-        payload: {
+      dispatch(
+        actions.createAdd({
           content: textRef.current.value,
           id: Date.now(),
           complete: false,
-        },
-      });
+        })
+      );
     },
     [dispatch]
   );
@@ -41,6 +34,7 @@ function Control({ dispatch }) {
 
 function Todos(props) {
   const { todos, dispatch } = props;
+
   return (
     <ul className="todos">
       {todos.map((todo) => {
@@ -49,7 +43,7 @@ function Todos(props) {
             <input
               type="checkbox"
               checked={todo.complete}
-              onChange={() => dispatch({ type: "toggle", payload: todo.id })}
+              onChange={() => dispatch(actions.createToggle(todo.id))}
             />
             <label htmlFor="" className={todo.complete ? "complete" : null}>
               {todo.content}
@@ -57,7 +51,7 @@ function Todos(props) {
             <span
               dangerouslySetInnerHTML={{ __html: "&cross;" }}
               onClick={() => {
-                dispatch({ type: "remove", payload: todo.id });
+                dispatch(actions.createRemove(todo.id));
               }}
             ></span>
           </li>
@@ -117,7 +111,7 @@ export default function App() {
   //   );
   useEffect(() => {
     const todos = JSON.parse(localStorage.getItem("_todos")) || [];
-    dispatch({ type: "set", payload: todos });
+    dispatch(actions.createSet(todos));
   }, [dispatch]);
   useEffect(() => {
     localStorage.setItem("_todos", JSON.stringify(todos));
