@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  padding: 0 200px;
+}
+
+.left {
+  flex: 0 0 200px;
+}
+.right {
+  flex: 1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+ul {
+  list-style: none;
+}
+li + li {
+  margin-top: 10px;
+}
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
