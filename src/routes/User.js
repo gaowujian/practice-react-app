@@ -43,7 +43,8 @@ function User() {
         <Switch>
           <Route path="/user/list" component={UserList} />
           <Route path="/user/add" component={UserAdd} />
-          <Protected path="/user/detail/:id" component={UserDetail} />
+          {/* <Protected path="/user/detail/:id" component={UserDetail} /> */}
+          <Route path="/user/detail/:id" component={UserDetail} />
           <Redirect to="/user/list" />
         </Switch>
       </div>

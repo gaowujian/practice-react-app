@@ -1,4 +1,5 @@
 import React from "react";
+import withPermission from "../hoc/withPermission";
 import UserAPI from "../utils/UserAPI";
 
 // 由于该组件是被保护的，经过校验成功之后，信息会存储在localStorage中
@@ -19,4 +20,4 @@ function UserDetail(props) {
   );
 }
 
-export default UserDetail;
+export default withPermission(UserDetail);
