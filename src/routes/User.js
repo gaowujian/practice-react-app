@@ -2,7 +2,7 @@ import React from "react";
 
 import { Redirect, Route, Switch, NavLink } from "react-router-dom";
 import Protected from "../components/Protected";
-import AnotherProtected from "../components/AnotherProtected";
+// import AnotherProtected from "../components/AnotherProtected";
 import UserAdd from "../components/UserAdd";
 import UserDetail from "../components/UserDetail";
 import UserList from "../components/UserList";
@@ -43,7 +43,7 @@ function User() {
         <Switch>
           <Route path="/user/list" component={UserList} />
           <Route path="/user/add" component={UserAdd} />
-          <AnotherProtected path="/user/detail/:id" component={UserDetail} />
+          <Protected path="/user/detail/:id" component={UserDetail} />
           <Redirect to="/user/list" />
         </Switch>
       </div>

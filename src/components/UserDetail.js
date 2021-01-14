@@ -7,14 +7,14 @@ import UserAPI from "../utils/UserAPI";
 // 该组件是一个业务组件，不应该参与权限的校验问题，不存在渲染无权访问这些内容的情况
 // 只负责根据props进行渲染, 既然我是校验过后渲染，那我就要假设，数据全部正确
 function UserDetail(props) {
-  // debugger;
-  console.log("detail props", props);
-  const { user } = props;
-  const userInfo = UserAPI.find(user.id);
+  // const { user } = props;
+  console.log(props);
+  const id = props.match.params.id;
+  const userInfo = UserAPI.find(id);
   return (
     <div>
       <h1>用户详情页面</h1>
-      当前用户信息:{userInfo.username}
+      当前用户信息:{userInfo && userInfo.username}
     </div>
   );
 }
