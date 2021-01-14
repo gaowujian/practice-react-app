@@ -1,0 +1,17 @@
+{
+  "routes": [
+    {
+      "path": "/",
+      "component": "Home",
+      "exact": true
+    },
+    {
+      "path": "/login",
+      "component": "Login"
+    },
+    {
+      "path": "/user",
+      "component": "User"
+    }
+  ]
+}
