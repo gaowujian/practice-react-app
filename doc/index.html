@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      /* main是容器 */
+      main {
+        position: relative;
+        top: 40px;
+        padding: 50px;
+        background-color: bisque;
+      }
+      /* div是伪装的图片元素 */
+      div {
+        margin: 40px;
+        background-color: red;
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+    <main>
+      <div></div>
+    </main>
+    <script>
+      window.onload = function () {
+        const container = document.querySelector("main");
+        const element = document.querySelector("div");
+        console.log(element.offsetParent);
+        console.log(element.offsetTop); // 50 + 40
+
+        console.log(container.getBoundingClientRect().top); // 40
+        console.log(element.getBoundingClientRect().top); // 40 + 50 + 40
+      };
+    </script>
+  </body>
+</html>
