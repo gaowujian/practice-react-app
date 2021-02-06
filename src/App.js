@@ -1,13 +1,21 @@
 import React from "react";
+import Common from "./components/Common";
+import Navigation from "./components/Navigation";
+import { HashRouter as Router } from "react-router-dom";
 
-const style = {
-  height: "100vh",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-};
+import "./style.css";
+
 function App() {
-  return <div style={style}>一个默认的本地空白项目用于练习各种不同的想法</div>;
+  return (
+    <Router>
+      <div className="container">
+        <div className="demo-area">
+          {/* <Common /> */}
+          <Navigation />
+        </div>
+      </div>
+    </Router>
+  );
 }
 
 export default App;
