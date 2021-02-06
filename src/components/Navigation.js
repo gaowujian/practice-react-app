@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Affix, Divider, Breadcrumb, Menu, Button } from "antd";
 import { Route, withRouter, Link } from "react-router-dom";
 import { HomeOutlined, SmileFilled, SmileOutlined } from "@ant-design/icons";
+const { SubMenu } = Menu;
 function Navigation(props) {
   const { location } = props;
   const breadcrumbNameMap = {
@@ -63,21 +64,34 @@ function Navigation(props) {
       <p>模式有三种:水平垂直和内嵌，内嵌是垂直的，所有子项目也在一条线，而普通垂直，子项目会向左/右展开</p>
       <p>item是可用项目, item group可以用来分组，在样式上有分类功能</p>
       <p>item的title属性，在激活inlineCollapsed属性后才有用</p>
+      <p>item group之间可以用 Menu.Divider进行分割，但是不能用普通的Divider分割</p>
 
-      <Menu mode="inline" inlineCollapsed={collapsed}>
+      <Menu
+        mode="inline"
+        inlineCollapsed={collapsed}
+        onClick={(...rest) => {
+          console.log(rest);
+        }}
+      >
         <Menu.Item danger icon={collapsed ? <HomeOutlined /> : ""}>
           菜单项
         </Menu.Item>
         <Menu.Item disabled>菜单项</Menu.Item>
-        <Menu.SubMenu title="子菜单">
+        <SubMenu
+          title="子菜单"
+          onClick={(...rest) => {
+            console.log("sub");
+            console.log(rest);
+          }}
+        >
           <Menu.ItemGroup title="分组1">
             <Menu.Item>子菜单项1</Menu.Item>
           </Menu.ItemGroup>
-          <Divider />
+          <Menu.Divider />
           <Menu.ItemGroup title="分组2">
             <Menu.Item>子菜单项1</Menu.Item>
           </Menu.ItemGroup>
-        </Menu.SubMenu>
+        </SubMenu>
         <Menu.Item title="设置收缩时展示的悬浮标题,覆盖children" icon={<SmileOutlined />}>
           最后一个
         </Menu.Item>
