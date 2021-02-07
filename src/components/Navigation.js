@@ -1,7 +1,9 @@
+import { HomeOutlined, SmileOutlined, UserOutlined } from "@ant-design/icons";
+import { Affix, Breadcrumb, Button, Divider, Dropdown, Menu, Pagination, Typography } from "antd";
 import React, { useState } from "react";
-import { Affix, Divider, Breadcrumb, Menu, Button } from "antd";
-import { Route, withRouter, Link } from "react-router-dom";
-import { HomeOutlined, SmileFilled, SmileOutlined } from "@ant-design/icons";
+import { Link, Route, withRouter } from "react-router-dom";
+
+const { Paragraph, Title } = Typography;
 const { SubMenu } = Menu;
 function Navigation(props) {
   const { location } = props;
@@ -30,11 +32,26 @@ function Navigation(props) {
   const toggleCollapsed = () => {
     setCollapsed(!collapsed);
   };
+
+  const menu = (
+    <Menu>
+      <Menu.Item>
+        <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
+          1st menu item
+        </a>
+      </Menu.Item>
+      <Menu.Item>
+        <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
+          2nd menu item
+        </a>
+      </Menu.Item>
+    </Menu>
+  );
+  const [currentPageSize, setCurrentPageSize] = useState(5);
   return (
     <div>
       <p>默认情况下，affix的元素还在文档流中，等触发之后就会添加fixed定位,脱离文档流</p>
       <p>由于是固定定位，不适用于绝对定位固定到某一个容器内的需求</p>
-
       <Affix
         offsetTop={20}
         onChange={(flag) => {
@@ -65,7 +82,6 @@ function Navigation(props) {
       <p>item是可用项目, item group可以用来分组，在样式上有分类功能</p>
       <p>item的title属性，在激活inlineCollapsed属性后才有用</p>
       <p>item group之间可以用 Menu.Divider进行分割，但是不能用普通的Divider分割</p>
-
       <Menu
         mode="inline"
         inlineCollapsed={collapsed}
@@ -97,6 +113,63 @@ function Navigation(props) {
         </Menu.Item>
       </Menu>
       <Button onClick={toggleCollapsed}>toggle内联收缩</Button>
+      <Divider />
+      <p>最重要的是overlay属性，可以自定义下拉菜单的内容</p>
+      <Paragraph style={{ color: "green" }}>Select 用于选择，而 Dropdown 是命令集合。</Paragraph>
+      <Paragraph style={{ color: "green" }}>
+        封装组件的时候也主要使用的是render props的应用, children是显示的内容,overlay是下拉弹出的内容
+      </Paragraph>
+      <br />
+      <Paragraph style={{ color: "blue" }}>普通的dropdown和button类型的dropdown</Paragraph>
+      <ol>
+        <li>普通的dropdown没有icon属性，需要自己添加icon，button类型的可以控制icon</li>
+        <li>button类型还可以像普通的button一样，控制大小，类型等</li>
+        <li>共同的地方在于，都可以控制是否禁用，overlay的内容，弹出位置，和菜单是否显示</li>
+        <li>buttonsRender属性可以用来去自定义带下拉菜单的按钮</li>
+      </ol>
+
+      <Dropdown overlay={menu}>
+        <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
+          Hover me <UserOutlined />
+        </a>
+      </Dropdown>
+      <br />
+      <Dropdown.Button
+        overlay={menu}
+        icon={<UserOutlined />}
+        buttonsRender={([buttonLeft, buttonRight]) => {
+          return [buttonRight, buttonLeft];
+        }}
+      >
+        Hover me
+      </Dropdown.Button>
+      <Divider />
+      <Title level={3}>分页器</Title>
+      <ol>
+        <li>几个重要的属性</li>
+        <li>current:当前页数,可以受控，也可以不受控</li>
+        <li>pageSize:当前每页的条数</li>
+        <li>pageSizeOptions:每页可显示多少条，有哪几个选项</li>
+        <li>showSizeChanger:可以显示页面条数控制器</li>
+        <li>total数据总条数</li>
+      </ol>
+      <Pagination
+        pageSize={currentPageSize}
+        onChange={(page, pageSize) => {
+          console.log("page:", page);
+          console.log("pageSize:", pageSize);
+        }}
+        onShowSizeChange={(current, size) => {
+          setCurrentPageSize(size);
+        }}
+        pageSizeOptions={[5, 10, 20]}
+        showSizeChanger
+        total={50}
+        // 自定义渲染不同的按钮
+        // itemRender={(page, type) => {
+        //   return <div>{page}</div>;
+        // }}
+      />
     </div>
   );
 }
