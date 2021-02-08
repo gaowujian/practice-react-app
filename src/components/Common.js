@@ -4,7 +4,7 @@ import { HomeOutlined, SmileTwoTone, SmileFilled } from "@ant-design/icons";
 
 const { Title, Paragraph, Text, Link } = Typography;
 function Common() {
-  const [ellipsis, setEllipsis] = React.useState(true);
+  const [ellipsis, setEllipsis] = useState(true);
   return (
     <div>
       {" "}
