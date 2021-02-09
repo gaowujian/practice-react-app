@@ -3,6 +3,9 @@ import Common from "./components/Common";
 import Navigation from "./components/Navigation";
 import DataDisplay from "./components/DataDisplay";
 import Layout from "./components/Layout";
+import DataInput from "./components/DataInput";
+import AntdForm from "./components/AntdForm";
+import Test from "./components/Test";
 import { HashRouter as Router, Route, Link } from "react-router-dom";
 
 import "./style.css";
@@ -25,6 +28,15 @@ function App() {
           <Menu.Item>
             <Link to="/data-display">数据展示组件</Link>
           </Menu.Item>
+          <Menu.Item>
+            <Link to="/data-input">数据输入组件</Link>
+          </Menu.Item>
+          <Menu.Item>
+            <Link to="/form">表单组件</Link>
+          </Menu.Item>
+          <Menu.Item>
+            <Link to="/test">测试功能组件</Link>
+          </Menu.Item>
         </Menu>
       </div>
 
@@ -34,6 +46,9 @@ function App() {
           <Route path="/layout" component={Layout} />
           <Route path="/navigation" component={Navigation} />
           <Route path="/data-display" component={DataDisplay} />
+          <Route path="/data-input" component={DataInput} />
+          <Route path="/form" component={AntdForm} />
+          <Route path="/test" component={Test} />
         </div>
       </div>
     </Router>

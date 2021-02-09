@@ -1,22 +1,5 @@
 import React, { useState } from "react";
-import {
-  Avatar,
-  Badge,
-  Button,
-  Divider,
-  Card,
-  Typography,
-  Dropdown,
-  Menu,
-  Collapse,
-  Descriptions,
-  Empty,
-  List,
-  Tabs,
-  Tooltip,
-  Popover,
-  Tree,
-} from "antd";
+import { Avatar, Badge, Button, Divider, Card, Typography, Dropdown, Menu, Collapse, Descriptions, Empty, List, Tabs, Tooltip, Popover, Tree } from "antd";
 import { UserOutlined, CaretRightOutlined } from "@ant-design/icons";
 
 const { Meta } = Card;
@@ -64,6 +47,11 @@ function DataDisplay() {
           key: "0-0-1",
           children: [{ title: <span style={{ color: "#1890ff" }}>sss</span>, key: "0-0-1-0" }],
         },
+        {
+          title: "parent 1-1",
+          key: "0-0-2",
+          children: [{ title: <span style={{ color: "#1890ff" }}>sss</span>, key: "0-0-2-0" }],
+        },
       ],
     },
   ];
@@ -107,29 +95,17 @@ function DataDisplay() {
         style={{ width: 300 }}
         actions={[<Avatar icon={<UserOutlined />} />, <Button type="primary">主按钮</Button>]}
       >
-        <Card
-          title="Default size card"
-          extra={<a href="#">More</a>}
-          cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-        ></Card>
+        <Card title="Default size card" extra={<a href="#">More</a>} cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}></Card>
         <Meta avatar={<UserOutlined />} title="内嵌图片" description="内嵌car展示" />
       </Card>
 
       <p>Meta只是一个配合Card使用的，用于在底部提供容器信息的title和描述信息，我们也可以用title和paragraph替代</p>
       <p>Meta是一个小巧的组件，把avatar（头像和图标），title和description等常用的信息弄成一个小组件</p>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <Card
-          hoverable
-          style={{ width: 240 }}
-          cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-        >
+        <Card hoverable style={{ width: 240 }} cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}>
           <Meta title="Europe Street beat" description="www.instagram.com" />
         </Card>
-        <Card
-          hoverable
-          style={{ width: 240 }}
-          cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-        >
+        <Card hoverable style={{ width: 240 }} cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}>
           <Title level={5}>Europe Street beat</Title>
           <Paragraph>www.instagram.com</Paragraph>
         </Card>
@@ -144,12 +120,7 @@ function DataDisplay() {
         <li>还可以控制折叠是否有背景，以及是否支持可折叠</li>
         <li>可以自定义每个折叠panel的背景色，园角，边距和图标</li>
       </ol>
-      <Collapse
-        bordered={false}
-        defaultActiveKey={["1"]}
-        expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 90 : 0} />}
-        className="site-collapse-custom-collapse"
-      >
+      <Collapse bordered={false} defaultActiveKey={["1"]} expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 90 : 0} />} className="site-collapse-custom-collapse">
         <Panel header="This is panel header 1" key="1" className="site-collapse-custom-panel">
           <p>emmdkjksjrekjrekjre</p>
         </Panel>
@@ -198,10 +169,7 @@ function DataDisplay() {
         dataSource={data}
         itemLayout="vertical"
         renderItem={(item) => (
-          <List.Item
-            actions={[<Button type="primary">primary</Button>, <Button type="link">link</Button>]}
-            extra={<Button type="dashed">extra</Button>}
-          >
+          <List.Item actions={[<Button type="primary">primary</Button>, <Button type="link">link</Button>]} extra={<Button type="dashed">extra</Button>}>
             <List.Item.Meta
               avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
               title={<a href="https://ant.design">{item.title}</a>}
@@ -270,14 +238,22 @@ function DataDisplay() {
       <ol>
         <li>多层次的结构列表，文件夹，组织架构，国家地区等</li>
         <li>用的时候查看详细api</li>
+        <li>在使用tree的时候有三个重要的key: selectedKeys, expandedKeys,checkedKeys，分别表示选中的key,被展开的节点key以及，使用checkbox选中的key</li>
+        <li>三个事件 onSelect onExpanded onCheck</li>
       </ol>
       <Tree
         checkable
         defaultExpandedKeys={["0-0-0", "0-0-1"]}
         defaultSelectedKeys={["0-0-0", "0-0-1"]}
         defaultCheckedKeys={["0-0-0", "0-0-1"]}
-        // onSelect={onSelect}
-        // onCheck={onCheck}
+        onSelect={(selectedKeys, info) => {
+          console.log("selectedKeys:", selectedKeys);
+          console.log("info:", info);
+        }}
+        onCheck={(checked, info) => {
+          console.log("checked:", checked);
+          console.log("info:", info);
+        }}
         treeData={treeData}
         draggable
       />
