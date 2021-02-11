@@ -8,6 +8,7 @@ import DataDisplay from "./components/DataDisplay";
 import DataInput from "./components/DataInput";
 import Layout from "./components/Layout";
 import Navigation from "./components/Navigation";
+import FeedBack from "./components/FeedBack";
 import Test from "./components/Test";
 import "./style.css";
 
@@ -40,6 +41,9 @@ function App() {
           <Menu.Item>
             <Link to="/test">测试功能组件</Link>
           </Menu.Item>
+          <Menu.Item>
+            <Link to="/feedback">反馈信息组件</Link>
+          </Menu.Item>
         </Menu>
       </div>
 
@@ -52,6 +56,7 @@ function App() {
           <Route path="/data-input" component={DataInput} />
           <Route path="/form" component={AntdForm} />
           <Route path="/table" component={AntdTable} />
+          <Route path="/feedback" component={FeedBack} />
           <Route path="/test" component={Test} />
         </div>
       </div>
