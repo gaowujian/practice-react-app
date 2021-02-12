@@ -1,9 +1,9 @@
+import { CaretRightOutlined, UserOutlined } from "@ant-design/icons";
+import { Avatar, Badge, Button, Card, Collapse, Descriptions, Divider, Dropdown, Empty, List, Menu, Popover, Tabs, Tooltip, Tree, Typography } from "antd";
 import React, { useState } from "react";
-import { Avatar, Badge, Button, Divider, Card, Typography, Dropdown, Menu, Collapse, Descriptions, Empty, List, Tabs, Tooltip, Popover, Tree } from "antd";
-import { UserOutlined, CaretRightOutlined } from "@ant-design/icons";
 
 const { Meta } = Card;
-const { Title, Text, Paragraph } = Typography;
+const { Title, Paragraph } = Typography;
 const { Panel } = Collapse;
 const { TabPane } = Tabs;
 function DataDisplay() {
@@ -95,7 +95,7 @@ function DataDisplay() {
         style={{ width: 300 }}
         actions={[<Avatar icon={<UserOutlined />} />, <Button type="primary">主按钮</Button>]}
       >
-        <Card title="Default size card" extra={<a href="#">More</a>} cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}></Card>
+        <Card title="Default size card" extra={<a href="http">More</a>} cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}></Card>
         <Meta avatar={<UserOutlined />} title="内嵌图片" description="内嵌car展示" />
       </Card>
 

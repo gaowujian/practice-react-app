@@ -1,25 +1,11 @@
-import { ClearOutlined, MailOutlined, SmileOutlined, TrademarkOutlined, UserOutlined } from "@ant-design/icons";
-import { AutoComplete, Button, Cascader, Checkbox, Col, Divider, Dropdown, Form, Input, InputNumber, Menu, Radio, Row, Select, Slider, Space, Switch, TreeSelect, Typography } from "antd";
+import { ClearOutlined, SmileOutlined, TrademarkOutlined, UserOutlined } from "@ant-design/icons";
+import { AutoComplete, Button, Cascader, Checkbox, Divider, Input, InputNumber, Radio, Select, Slider, Space, Switch, TreeSelect, Typography } from "antd";
 import React, { useEffect, useRef, useState } from "react";
-const { Title, Text, Paragraph } = Typography;
+const { Title } = Typography;
 const { TreeNode } = TreeSelect;
 function DataInput() {
   const { Option } = Select;
   const { Search } = Input;
-  const dropdown = <Dropdown overlay={<button>11</button>}>HOVER</Dropdown>;
-  const menu = (
-    <Menu>
-      <Menu.Item key="mail" icon={<MailOutlined />}>
-        Navigation One
-      </Menu.Item>
-      <Menu.Item key="mail" icon={<MailOutlined />}>
-        Navigation One
-      </Menu.Item>
-      <Menu.Item key="mail" icon={<MailOutlined />}>
-        Navigation One
-      </Menu.Item>
-    </Menu>
-  );
 
   const options = [
     {
@@ -74,7 +60,7 @@ function DataInput() {
       <Option value="https://">https://</Option>
     </Select>
   );
-  const [asyncOptions, setAsyncOptions] = useState([
+  const [asyncOptions] = useState([
     {
       value: "zhejiang",
       label: "Zhejiang",
@@ -104,6 +90,7 @@ function DataInput() {
     { label: "Orange", value: "Oxxxrange" },
   ];
   const [switchState, setSwitchState] = useState(false);
+  const [result, setResult] = useState([]);
   const ref = useRef(null);
   useEffect(() => {
     ref.current = switchState;
@@ -320,14 +307,22 @@ function DataInput() {
         <li>autocomplte重点在于自己的输入，和外界提供无关，他只负责帮我辅助快速生成我想要的数据</li>
       </ol>
       <AutoComplete
-        options={autocomplteOptions}
+        // options={autocomplteOptions}
         style={{ width: 200 }}
-        onSelect={() => {
+        onSelect={(value) => {
           console.log("onSelect");
+          console.log("selected value:", value);
         }}
         onSearch={(value) => {
           console.log("onSearch");
           console.log("value:", value);
+          let res = [];
+          if (!value || value.indexOf("@") >= 0) {
+            res = [];
+          } else {
+            res = ["gmail.com", "163.com", "qq.com"].map((domain) => `${value}@${domain}`);
+          }
+          setResult(res);
         }}
         onChange={(value, option) => {
           console.log("onChange");
@@ -335,7 +330,13 @@ function DataInput() {
           console.log("option:", option);
         }}
         placeholder="input here"
-      />
+      >
+        {result.map((email) => (
+          <Option key={email} value={email}>
+            {email}
+          </Option>
+        ))}
+      </AutoComplete>
       <Divider />
       <Title level={5}>滑块</Title>
       <ol>

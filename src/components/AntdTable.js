@@ -1,5 +1,5 @@
+import { Button, Space, Table, Tag, Typography } from "antd";
 import React, { useState } from "react";
-import { Typography, Divider, Table, Tag, Space, Button } from "antd";
 const { Title } = Typography;
 function AntdTable() {
   const [sortOrder, setSortOrder] = useState("descend");
@@ -115,8 +115,8 @@ function AntdTable() {
 
       render: (text, record) => (
         <Space size="middle">
-          <a>Invite {record.name}</a>
-          <a>Delete</a>
+          <span>Invite {record.name}</span>
+          <span>Delete</span>
         </Space>
       ),
     },

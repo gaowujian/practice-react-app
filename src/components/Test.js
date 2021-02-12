@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-
-import { Drawer, Button } from "antd";
+import { Button, Drawer } from "antd";
+import React from "react";
 
 class App extends React.Component {
   state = { visible: false };

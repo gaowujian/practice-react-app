@@ -1,6 +1,6 @@
 import { Menu } from "antd";
 import React from "react";
-import { HashRouter as Router, Link, Route } from "react-router-dom";
+import { HashRouter as Router, Link, Route, Switch } from "react-router-dom";
 import AntdForm from "./components/AntdForm";
 import AntdTable from "./components/AntdTable";
 import Common from "./components/Common";
@@ -11,6 +11,7 @@ import Navigation from "./components/Navigation";
 import FeedBack from "./components/FeedBack";
 import Test from "./components/Test";
 import "./style.css";
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
@@ -49,15 +50,18 @@ function App() {
 
       <div className="container">
         <div className="demo-area">
-          <Route path="/" exact component={Common} />
-          <Route path="/layout" component={Layout} />
-          <Route path="/navigation" component={Navigation} />
-          <Route path="/data-display" component={DataDisplay} />
-          <Route path="/data-input" component={DataInput} />
-          <Route path="/form" component={AntdForm} />
-          <Route path="/table" component={AntdTable} />
-          <Route path="/feedback" component={FeedBack} />
-          <Route path="/test" component={Test} />
+          <Switch>
+            <Route path="/" exact component={Common} />
+            <Route path="/layout" component={Layout} />
+            <Route path="/navigation" component={Navigation} />
+            <Route path="/data-display" component={DataDisplay} />
+            <Route path="/data-input" component={DataInput} />
+            <Route path="/form" component={AntdForm} />
+            <Route path="/table" component={AntdTable} />
+            <Route path="/feedback" component={FeedBack} />
+            <Route path="/test" component={Test} />
+            <Route component={NotFound} />
+          </Switch>
         </div>
       </div>
     </Router>

@@ -1,9 +1,8 @@
-import React from "react";
-import { Typography, Form, Input, Button, Select, InputNumber } from "antd";
-import { useForm } from "antd/lib/form/Form";
-import Checkbox from "antd/lib/checkbox/Checkbox";
-import { useState } from "react";
 import { SmileOutlined } from "@ant-design/icons";
+import { Button, Form, Input, Select, Typography } from "antd";
+import Checkbox from "antd/lib/checkbox/Checkbox";
+import { useForm } from "antd/lib/form/Form";
+import React, { useState } from "react";
 
 const { Title } = Typography;
 

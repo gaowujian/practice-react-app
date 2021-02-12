@@ -1,7 +1,7 @@
-import React from "react";
-import { Divider, Typography, Button, Upload, Popconfirm, Space, Layout, Card, Row, Col } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
-const { Title, Text, Paragraph } = Typography;
+import { Button, Card, Col, Divider, Layout, Popconfirm, Row, Space, Typography, Upload } from "antd";
+import React from "react";
+const { Title } = Typography;
 const { Header, Content, Sider, Footer } = Layout;
 function LayoutComponent() {
   return (
@@ -52,9 +52,7 @@ function LayoutComponent() {
         <li>
           <strong style={{ color: "red" }}>你的内容应当放置于 col 内，并且，只有 col 可以作为 row 的直接元素。</strong>
         </li>
-        <li>
-          row的gutter表示间距，单位是px，而col的span表示flex，没有单位，表示24份占几份，如果span是6，那么flex:0 0 25%
-        </li>
+        <li>row的gutter表示间距，单位是px，而col的span表示flex，没有单位，表示24份占几份，如果span是6，那么flex:0 0 25%</li>
         <li>如果支持响应式，可以针对col的span属性，修改不同breakpoint的数值</li>
         <li>Grid组件提供了useBreakpoint,可以提供个性化布局</li>
         <li>offset是一个比较灵活的属性,提供给col,可以方便的使用margin进行偏移</li>

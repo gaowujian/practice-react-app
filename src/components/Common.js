@@ -4,7 +4,7 @@ import { HomeOutlined, SmileTwoTone, SmileFilled } from "@ant-design/icons";
 
 const { Title, Paragraph, Text, Link } = Typography;
 function Common() {
-  const [ellipsis, setEllipsis] = useState(true);
+  const [ellipsis] = useState(true);
   return (
     <div>
       {" "}
@@ -41,10 +41,7 @@ function Common() {
           我是段落
         </Paragraph>
 
-        <Text
-          style={ellipsis ? { width: 100 } : undefined}
-          ellipsis={ellipsis ? { tooltip: "I am ellipsis now!" } : false}
-        >
+        <Text style={ellipsis ? { width: 100 } : undefined} ellipsis={ellipsis ? { tooltip: "I am ellipsis now!" } : false}>
           Ant Design, a design language for background applications, is refined by Ant UED Team.
         </Text>
         <Link href="https://ant.design" target="_blank">

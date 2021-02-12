@@ -69,7 +69,10 @@
     "test": "node scripts/test.js"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "rules": {
+      "no-template-curly-in-string": "off"
+    }
   },
   "browserslist": {
     "production": [
