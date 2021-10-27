@@ -13,8 +13,9 @@ export default () => {
         属性说明
         <li>layout:内容的布局方式，center支持垂直居中</li>
         <li>direction:有盒子嵌套的时候，flex-direction盒子方向</li>
+        <li>gutter设置水平或者垂直间距</li>
       </ul>
-      <ProCard direction="column" ghost gutter={[0, 8]}>
+      <ProCard direction="column" ghost gutter={[10, 8]}>
         <ProCard layout="center" bordered>
           colSpan - 24
         </ProCard>
