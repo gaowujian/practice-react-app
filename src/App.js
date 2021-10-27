@@ -15,6 +15,7 @@ import NotFound from "./components/NotFound";
 import ProLayout from "./components/ProLayout";
 import AntdPageContainer from "./components/AntdPageContainer";
 import AntdProCard from "./components/AntdProCard";
+import AntdProForm from "./components/AntdProForm";
 
 function App() {
   return (
@@ -57,6 +58,9 @@ function App() {
           <Menu.Item>
             <Link to="/procard">业内容器card</Link>
           </Menu.Item>
+          <Menu.Item>
+            <Link to="/proform">高级表单</Link>
+          </Menu.Item>
         </Menu>
       </div>
 
@@ -75,6 +79,7 @@ function App() {
             <Route path="/prolayout" component={ProLayout} />
             <Route path="/pagecontainer" component={AntdPageContainer} />
             <Route path="/procard" component={AntdProCard} />
+            <Route path="/proform" component={AntdProForm} />
             <Route component={NotFound} />
           </Switch>
         </div>
