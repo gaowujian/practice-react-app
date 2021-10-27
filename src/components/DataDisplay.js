@@ -1,5 +1,22 @@
 import { CaretRightOutlined, UserOutlined } from "@ant-design/icons";
-import { Avatar, Badge, Button, Card, Collapse, Descriptions, Divider, Dropdown, Empty, List, Menu, Popover, Tabs, Tooltip, Tree, Typography } from "antd";
+import {
+  Avatar,
+  Badge,
+  Button,
+  Card,
+  Collapse,
+  Descriptions,
+  Divider,
+  Dropdown,
+  Empty,
+  List,
+  Menu,
+  Popover,
+  Tabs,
+  Tooltip,
+  Tree,
+  Typography,
+} from "antd";
 import React, { useState } from "react";
 
 const { Meta } = Card;
@@ -95,17 +112,29 @@ function DataDisplay() {
         style={{ width: 300 }}
         actions={[<Avatar icon={<UserOutlined />} />, <Button type="primary">主按钮</Button>]}
       >
-        <Card title="Default size card" extra={<a href="http">More</a>} cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}></Card>
+        <Card
+          title="Default size card"
+          extra={<a href="http">More</a>}
+          cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+        ></Card>
         <Meta avatar={<UserOutlined />} title="内嵌图片" description="内嵌car展示" />
       </Card>
 
       <p>Meta只是一个配合Card使用的，用于在底部提供容器信息的title和描述信息，我们也可以用title和paragraph替代</p>
       <p>Meta是一个小巧的组件，把avatar（头像和图标），title和description等常用的信息弄成一个小组件</p>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <Card hoverable style={{ width: 240 }} cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}>
+        <Card
+          hoverable
+          style={{ width: 240 }}
+          cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+        >
           <Meta title="Europe Street beat" description="www.instagram.com" />
         </Card>
-        <Card hoverable style={{ width: 240 }} cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}>
+        <Card
+          hoverable
+          style={{ width: 240 }}
+          cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+        >
           <Title level={5}>Europe Street beat</Title>
           <Paragraph>www.instagram.com</Paragraph>
         </Card>
@@ -120,7 +149,12 @@ function DataDisplay() {
         <li>还可以控制折叠是否有背景，以及是否支持可折叠</li>
         <li>可以自定义每个折叠panel的背景色，园角，边距和图标</li>
       </ol>
-      <Collapse bordered={false} defaultActiveKey={["1"]} expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 90 : 0} />} className="site-collapse-custom-collapse">
+      <Collapse
+        bordered={false}
+        defaultActiveKey={["1"]}
+        expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 90 : 0} />}
+        className="site-collapse-custom-collapse"
+      >
         <Panel header="This is panel header 1" key="1" className="site-collapse-custom-panel">
           <p>emmdkjksjrekjrekjre</p>
         </Panel>
@@ -169,7 +203,10 @@ function DataDisplay() {
         dataSource={data}
         itemLayout="vertical"
         renderItem={(item) => (
-          <List.Item actions={[<Button type="primary">primary</Button>, <Button type="link">link</Button>]} extra={<Button type="dashed">extra</Button>}>
+          <List.Item
+            actions={[<Button type="primary">primary</Button>, <Button type="link">link</Button>]}
+            extra={<Button type="dashed">extra</Button>}
+          >
             <List.Item.Meta
               avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
               title={<a href="https://ant.design">{item.title}</a>}
@@ -185,6 +222,11 @@ function DataDisplay() {
       <Title level={5}>Tabs标签页 </Title>
       <ol>
         <li>组件分为Tab和Panel组件</li>
+        <li>
+          <Paragraph mark>
+            Tabs组件本身没有支持类似table的datasoruce属性，传入配置，但是在其他组件中支持tabs可以通过传入配置来创建标签页
+          </Paragraph>
+        </li>
         <li>关于标签，我们可以设置标签的位置，上下左右，设置标签的样式type类型，标签禁用</li>
         <li>当type是edit-card的时候，支持标签页的动态添加和删除，还可以自定义标签页的创建方式</li>
         <li>tabs组件是否有extra操作</li>
@@ -238,7 +280,10 @@ function DataDisplay() {
       <ol>
         <li>多层次的结构列表，文件夹，组织架构，国家地区等</li>
         <li>用的时候查看详细api</li>
-        <li>在使用tree的时候有三个重要的key: selectedKeys, expandedKeys,checkedKeys，分别表示选中的key,被展开的节点key以及，使用checkbox选中的key</li>
+        <li>
+          在使用tree的时候有三个重要的key: selectedKeys,
+          expandedKeys,checkedKeys，分别表示选中的key,被展开的节点key以及，使用checkbox选中的key
+        </li>
         <li>三个事件 onSelect onExpanded onCheck</li>
       </ol>
       <Tree

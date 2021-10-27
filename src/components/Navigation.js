@@ -167,6 +167,7 @@ function Navigation(props) {
         <li>通过breadcrumb属性，支持一个面包屑，也可以自己使用breadcrumb组件,层级深的页面可以快速导航</li>
         <li>tags属性 给副标题后可以加一个标签</li>
         <li>breadcrumbrender属性可以在面包屑的地方自定义渲染内容</li>
+        <li>extra属性配置页面级操作</li>
         <li>footer用来渲染tabbar</li>
       </ol>
       <PageHeader

@@ -12,9 +12,10 @@ export default function AntdPageContainer() {
   return (
     <div style={{ height: "2000px" }}>
       <ul>
-        <li>页面容器组件，可以直接作为一个新开发页面的基础模板</li>
+        <li>页面容器组件，可以直接作为一个新开发页面的基础模板，整体基于pageheader组件</li>
         <li>header属性: 基于PageHeader组件，包含了一个页面中常用的内容展示</li>
-        <li>tablist属性:基于tab组件,支持兼容一个tab</li>
+        <li>extra属性:页面级操作</li>
+        <li>tablist属性:基于tab组件,兼容Tab组件的所有属性</li>
         <li>fixedHeader属性：滑动时，包括header和tablist的内容都会固定在头部</li>
         <li>loading属性控制整个页面的加载,所以children文字不显示</li>
       </ul>
