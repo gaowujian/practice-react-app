@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/pro-form": "^1.44.0",
+    "@ant-design/pro-layout": "^6.27.0",
+    "@ant-design/pro-table": "^2.56.4",
     "@babel/core": "7.9.0",
     "@svgr/webpack": "4.3.3",
     "@testing-library/jest-dom": "^4.2.4",

@@ -1,18 +1,34 @@
 import { HomeOutlined, SmileOutlined, UserOutlined } from "@ant-design/icons";
-import { Affix, Breadcrumb, Button, Divider, Dropdown, Menu, Pagination, Typography } from "antd";
+import { Affix, Breadcrumb, Button, Divider, Dropdown, Menu, Pagination, Typography, PageHeader, Tabs } from "antd";
 import React, { useState } from "react";
 import { Link, Route, withRouter } from "react-router-dom";
 
 const { Paragraph, Title } = Typography;
 const { SubMenu } = Menu;
+const { TabPane } = Tabs;
+const routes = [
+  {
+    path: "/navigation",
+    breadcrumbName: "一级",
+  },
+  {
+    path: "/level2",
+    breadcrumbName: "二级",
+  },
+  {
+    path: "/level3",
+    breadcrumbName: "三级",
+  },
+];
 function Navigation(props) {
   const { location } = props;
   const breadcrumbNameMap = {
-    "/user": "uuuu",
-    "/user/detail": "dddd",
+    "/navigation": "navigation",
+    "/navigation/user": "navigation/user",
   };
   const pathSnippets = location.pathname.split("/").filter((i) => i);
   const extraBreadcrumbItems = pathSnippets.map((_, index) => {
+    // debugger;
     const url = `/${pathSnippets.slice(0, index + 1).join("/")}`;
     return (
       <Breadcrumb.Item key={url}>
@@ -62,6 +78,7 @@ function Navigation(props) {
       </Affix>
       <Divider style={{ color: "white" }} />
       <h2>面包屑配合路由导航，选择使用，感觉用处不大</h2>
+      <Paragraph>层级深的页面可以快速导航</Paragraph>
       <Route path="/" exact render={() => <div>home</div>} />
       <Route path="/user" exact render={() => <div>user概述信息</div>} />
       <Route path="/user/detail" exact render={() => <div>user详细信息</div>} />
@@ -116,7 +133,9 @@ function Navigation(props) {
       <Divider />
       <p>最重要的是overlay属性，可以自定义下拉菜单的内容</p>
       <Paragraph style={{ color: "green" }}>Select 用于选择，而 Dropdown 是命令集合。</Paragraph>
-      <Paragraph style={{ color: "green" }}>封装组件的时候也主要使用的是render props的应用, children是显示的内容,overlay是下拉弹出的内容</Paragraph>
+      <Paragraph style={{ color: "green" }}>
+        封装组件的时候也主要使用的是render props的应用, children是显示的内容,overlay是下拉弹出的内容
+      </Paragraph>
       <br />
       <Paragraph style={{ color: "blue" }}>普通的dropdown和button类型的dropdown</Paragraph>
       <ol>
@@ -141,6 +160,60 @@ function Navigation(props) {
       >
         Hover me
       </Dropdown.Button>
+      <Divider />
+      <Title level={3}>pageheader页头</Title>
+      <ol>
+        <li>位于一个页面的头部，主要包括面包屑，标题，页面的简介，页面的操作（添加删除）和页面导航</li>
+        <li>通过breadcrumb属性，支持一个面包屑，也可以自己使用breadcrumb组件,层级深的页面可以快速导航</li>
+        <li>tags属性 给副标题后可以加一个标签</li>
+        <li>breadcrumbrender属性可以在面包屑的地方自定义渲染内容</li>
+        <li>footer用来渲染tabbar</li>
+      </ol>
+      <PageHeader
+        ghost={false}
+        onBack={() => window.history.back()}
+        title="页面主标题"
+        subTitle="页面副标题"
+        breadcrumb={{ routes }}
+        extra={[
+          <Button key="3">页面级操作1</Button>,
+          <Button key="2">页面级操作2</Button>,
+          <Button key="1" type="primary">
+            页面级操作3
+          </Button>,
+        ]}
+        footer={
+          <div>
+            <div>footer属性放置一个tab bar</div>
+            <Tabs defaultActiveKey="1">
+              <TabPane tab="Tab 1" key="1">
+                Content of Tab Pane 1
+              </TabPane>
+              <TabPane tab="Tab 2" key="2">
+                Content of Tab Pane 2
+              </TabPane>
+              <TabPane tab="Tab 3" key="3">
+                Content of Tab Pane 3
+              </TabPane>
+            </Tabs>
+          </div>
+        }
+      >
+        页面内容简介
+      </PageHeader>
+      <div>page header并列后放置一个tab bar</div>
+      <Tabs defaultActiveKey="1">
+        <TabPane tab="Tab 1" key="1">
+          Content of Tab Pane 1
+        </TabPane>
+        <TabPane tab="Tab 2" key="2">
+          Content of Tab Pane 2
+        </TabPane>
+        <TabPane tab="Tab 3" key="3">
+          Content of Tab Pane 3
+        </TabPane>
+      </Tabs>
+
       <Divider />
       <Title level={3}>分页器</Title>
       <ol>

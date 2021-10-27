@@ -12,6 +12,8 @@ import FeedBack from "./components/FeedBack";
 import Test from "./components/Test";
 import "./style.css";
 import NotFound from "./components/NotFound";
+import ProLayout from "./components/ProLayout";
+import AntdPageContainer from "./components/AntdPageContainer";
 
 function App() {
   return (
@@ -45,6 +47,12 @@ function App() {
           <Menu.Item>
             <Link to="/feedback">反馈信息组件</Link>
           </Menu.Item>
+          <Menu.Item>
+            <Link to="/prolayout">高级布局</Link>
+          </Menu.Item>
+          <Menu.Item>
+            <Link to="/pagecontainer">页容器</Link>
+          </Menu.Item>
         </Menu>
       </div>
 
@@ -60,6 +68,8 @@ function App() {
             <Route path="/table" component={AntdTable} />
             <Route path="/feedback" component={FeedBack} />
             <Route path="/test" component={Test} />
+            <Route path="/prolayout" component={ProLayout} />
+            <Route path="/pagecontainer" component={AntdPageContainer} />
             <Route component={NotFound} />
           </Switch>
         </div>
