@@ -73,6 +73,7 @@ function DataDisplay() {
     },
   ];
   const [activeKey, setActiveKey] = useState("1");
+  const [cardActiveKey, setCardActiveKey] = useState("");
   return (
     <div>
       <Avatar
@@ -96,6 +97,20 @@ function DataDisplay() {
       </ol>
       <Card
         title="Default size card"
+        tabList={[
+          {
+            key: "article",
+            tab: "art标题",
+          },
+          {
+            key: "app",
+            tab: "app",
+          },
+          {
+            key: "project",
+            tab: "project标题",
+          },
+        ]}
         extra={
           <Dropdown
             overlay={
@@ -109,9 +124,13 @@ function DataDisplay() {
             <Button>更多内容</Button>
           </Dropdown>
         }
-        style={{ width: 300 }}
+        style={{ width: 500 }}
         actions={[<Avatar icon={<UserOutlined />} />, <Button type="primary">主按钮</Button>]}
+        onTabChange={(key) => {
+          setCardActiveKey(key);
+        }}
       >
+        card内激活内容:{cardActiveKey}
         <Card
           title="Default size card"
           extra={<a href="http">More</a>}
