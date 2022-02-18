@@ -168,7 +168,12 @@ function AntdTable() {
     setSelectedRowKeys(selectedRowKeys);
   }
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-  const rowSelection = { type: "checkbox", selectedRowKeys: selectedRowKeys, onChange: handleSelectedKeysChange, selections: true };
+  const rowSelection = {
+    type: "checkbox",
+    selectedRowKeys: selectedRowKeys,
+    onChange: handleSelectedKeysChange,
+    selections: true,
+  };
 
   //   分页，排序和筛选变化时都会触发
   const handleChange = (pagination, filters, sorter) => {
@@ -189,14 +194,26 @@ function AntdTable() {
       <ol>
         <li>如果有大量的结构化数据需要展示，如果只是展示可读数据，可以考虑使用Descriptions</li>
         <li>如果对数据有排序，搜索分页和自定义的复杂操作</li>
-        <li>行选中rowSelection是一个非常重要的操作，通过配置type可以决定是单选还是多选,自定义快捷选中规则，默认有全选，全不选</li>
+        <li>
+          行选中rowSelection是一个非常重要的操作，通过配置type可以决定是单选还是多选,自定义快捷选中规则，默认有全选，全不选
+        </li>
         <li>filter可以用来筛选数据条件,onFilter函数定义筛选逻辑</li>
-        <li>sorter函数指定后默认支持排序，sortDirections的默认值是[ascend, descend]，支持双向排序，如果只支持单向自己配置一下,defaultSortOrder用来配置是否开始默认的排序，否则数据按输入进行显示</li>
-        <li>一个列表中默认只有一个排序方式，如果有多个排序需要指定优先级，sorter不再是一个函数,sorter.compare是排序逻辑,sorter.multiple是优先级,值越大优先级越高</li>
+        <li>
+          sorter函数指定后默认支持排序，sortDirections的默认值是[ascend,
+          descend]，支持双向排序，如果只支持单向自己配置一下,defaultSortOrder用来配置是否开始默认的排序，否则数据按输入进行显示
+        </li>
+        <li>
+          一个列表中默认只有一个排序方式，如果有多个排序需要指定优先级，sorter不再是一个函数,sorter.compare是排序逻辑,sorter.multiple是优先级,值越大优先级越高
+        </li>
         <li>sortOrder属性可以让table组件受控,可以用来修改排序，并重新render</li>
-        <li>如果一个的修改只会影响自己的显示，那么受控和受控差距不大，但是当一个属性的改变需要引起其他人的变化就需要让其受控</li>
+        <li>
+          如果一个的修改只会影响自己的显示，那么受控和受控差距不大，但是当一个属性的改变需要引起其他人的变化就需要让其受控
+        </li>
         <li>不配置sortOrder属性的时候，也可以实现内容的排序，同时不会引起重新render</li>
-        <li>column接受render属性用于自定义渲染，函数接受 text当前行的值 row指的是当前行的信息，包含其他列 以及index当前行的索引为参数信息 </li>
+        <li>
+          column接受render属性用于自定义渲染，函数接受 text当前行的值 row指的是当前行的信息，包含其他列
+          以及index当前行的索引为参数信息{" "}
+        </li>
         <li>表头只支持列合并不支持行合并，表格单元支持行合并和列合并</li>
         <li>table支持树形结构数据的展示，但是操作的话，还是推荐树形组件更方便，有选中，展开等操作事件</li>
         <li>配置table的scroll属性，可以控制固定表头</li>
@@ -213,7 +230,15 @@ function AntdTable() {
       >
         Age Sort
       </Button>
-      <Table scroll={{ x: 500, y: 200 }} columns={columns} indentSize={20} dataSource={data} bordered={false} rowSelection={rowSelection} onChange={handleChange} />
+      <Table
+        scroll={{ x: 500, y: 200 }}
+        columns={columns}
+        indentSize={20}
+        dataSource={data}
+        bordered={false}
+        rowSelection={rowSelection}
+        onChange={handleChange}
+      />
     </div>
   );
 }

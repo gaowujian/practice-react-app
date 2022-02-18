@@ -19,6 +19,7 @@ function Common() {
           message.success("you are so handsome!");
         }}
       ></Button>
+      <Text> button组件的使用</Text>
       <br />
       <Button
         type="default"
@@ -41,7 +42,10 @@ function Common() {
           我是段落
         </Paragraph>
 
-        <Text style={ellipsis ? { width: 100 } : undefined} ellipsis={ellipsis ? { tooltip: "I am ellipsis now!" } : false}>
+        <Text
+          style={ellipsis ? { width: 100 } : undefined}
+          ellipsis={ellipsis ? { tooltip: "I am ellipsis now!" } : false}
+        >
           Ant Design, a design language for background applications, is refined by Ant UED Team.
         </Text>
         <Link href="https://ant.design" target="_blank">
