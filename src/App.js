@@ -29,6 +29,7 @@ function App() {
           in={show}
           appear
           timeout={1000}
+          unmountOnExit
           classNames={{
             appear: "animate__faster animate__animated",
             appearActive: "animate__faster animate__animated animate__lightSpeedInLeft",
