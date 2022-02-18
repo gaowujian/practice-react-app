@@ -1,10 +1,12 @@
 import React, { useRef, useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import "./style.css";
+import "./animate.css";
 
 function App() {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
   const contentRef = useRef();
+
   return (
     <div>
       <section>
@@ -15,8 +17,7 @@ function App() {
         <br />
         <button
           onClick={() => {
-            contentRef.current &&
-              contentRef.current.classList.toggle("enter-active");
+            contentRef.current && contentRef.current.classList.toggle("enter-active");
           }}
         >
           显示/隐藏
@@ -24,9 +25,26 @@ function App() {
       </section>
       <section>
         <h1>使用react-transition-group</h1>
-
-        <CSSTransition in={show} appear timeout={2000} classNames="my-node">
-          <div className={!show ? "my-node-base" : ""}>我是一个内容区域</div>
+        <CSSTransition
+          in={show}
+          appear
+          timeout={1000}
+          classNames={{
+            appear: "animate__faster animate__animated",
+            appearActive: "animate__faster animate__animated animate__lightSpeedInLeft",
+            appearDone: "animate__faster animate__animated animate__lightSpeedInLeft",
+            enter: "animate__faster animate__animated",
+            enterActive: "animate__faster animate__animated animate__lightSpeedInLeft",
+            enterDone: "animate__faster animate__animated animate__lightSpeedInLeft",
+            exit: "animate__faster animate__animated",
+            exitActive: "animate__faster animate__animated animate__lightSpeedOutRight",
+            exitDone: "animate__faster animate__animated animate__lightSpeedOutRight",
+          }}
+        >
+          <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio minus repellendus, delectus asperiores
+            voluptates quae?
+          </div>
         </CSSTransition>
 
         <br />

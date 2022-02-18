@@ -6,23 +6,23 @@
   opacity: 1;
 }
 
-.my-node-enter,
-.my-node-appear {
+.animated-node-enter,
+.animated-node-appear {
   opacity: 0;
 }
 
-.my-node-base {
-  opacity: 0;
-}
-.my-node-enter-active,
-.my-node-appear-active {
+.animated-node-enter-active,
+.animated-node-appear-active {
   opacity: 1;
   transition: opacity 2000ms;
 }
-.my-node-exit {
+.animated-node-exit {
   opacity: 1;
 }
-.my-node-exit-active {
+.animated-node-exit-active {
   opacity: 0;
   transition: opacity 2000ms;
+}
+.animated-node-exit-done {
+  opacity: 0;
 }
