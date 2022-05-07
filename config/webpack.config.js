@@ -253,14 +253,14 @@ module.exports = function (webpackEnv) {
             test: /[\\/]node_modules[\\/]/,
             priority: -10,
             reuseExistingChunk: true,
-            filename: "[name][chunkhash]~bundle.js",
+            // filename: "[name][chunkhash]~bundle.js",
           },
           commons: {
             name: "commons",
             minChunks: 2, // 至少有两个chunk里引用了同一个module才有必要拆分, 多页应用，或者import()异步加载
             priority: -20,
             reuseExistingChunk: true,
-            filename: "[name][chunkhash]~bundle.js",
+            // filename: "[name][chunkhash]~bundle.js",
           },
         },
       },
