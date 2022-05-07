@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import "antd/dist/antd.css";
 import "@ant-design/pro-form/dist/form.css";
 import "@ant-design/pro-table/dist/table.css";
 import "@ant-design/pro-card/dist/card.css";
