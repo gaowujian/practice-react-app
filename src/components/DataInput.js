@@ -1,4 +1,7 @@
-import { ClearOutlined, SmileOutlined, TrademarkOutlined, UserOutlined } from "@ant-design/icons";
+import ClearOutlined from "@ant-design/icons/ClearOutlined";
+import SmileOutlined from "@ant-design/icons/SmileOutlined";
+import TrademarkOutlined from "@ant-design/icons/TrademarkOutlined";
+import UserOutlined from "@ant-design/icons/UserOutlined";
 import { AutoComplete, Button, Cascader, Checkbox, Divider, Input, InputNumber, Radio, Select, Slider, Space, Switch, TreeSelect, Typography } from "antd";
 import React, { useEffect, useRef, useState } from "react";
 const { Title } = Typography;

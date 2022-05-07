@@ -1,5 +1,8 @@
 import React from "react";
-import { SmileOutlined, CrownOutlined, TabletOutlined, AntDesignOutlined } from "@ant-design/icons";
+import SmileOutlined from "@ant-design/icons/SmileOutlined";
+import TabletOutlined from "@ant-design/icons/TabletOutlined";
+import CrownOutlined from "@ant-design/icons/CrownOutlined";
+import AntDesignOutlined from "@ant-design/icons/AntDesignOutlined";
 export default {
   route: {
     path: "/",

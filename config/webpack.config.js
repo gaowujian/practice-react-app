@@ -23,6 +23,8 @@ const ModuleNotFoundPlugin = require("react-dev-utils/ModuleNotFoundPlugin");
 const ForkTsCheckerWebpackPlugin = require("react-dev-utils/ForkTsCheckerWebpackPlugin");
 const typescriptFormatter = require("react-dev-utils/typescriptFormatter");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
+const CompressionWebpackPlugin = require("compression-webpack-plugin");
 
 const postcssNormalize = require("postcss-normalize");
 
@@ -243,21 +245,22 @@ module.exports = function (webpackEnv) {
       // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
       splitChunks: {
         chunks: "all",
-        // name: false,
+        name: false,
+        // maxSize: 300000,
         cacheGroups: {
           vendors: {
             name: "vendors",
             test: /[\\/]node_modules[\\/]/,
             priority: -10,
             reuseExistingChunk: true,
-            filename: "[name]~bundle.js",
+            filename: "[name][chunkhash]~bundle.js",
           },
           commons: {
             name: "commons",
             minChunks: 2, // 至少有两个chunk里引用了同一个module才有必要拆分, 多页应用，或者import()异步加载
             priority: -20,
             reuseExistingChunk: true,
-            filename: "[name]~bundle.js",
+            filename: "[name][chunkhash]~bundle.js",
           },
         },
       },
@@ -507,11 +510,9 @@ module.exports = function (webpackEnv) {
           {
             inject: true,
             template: paths.appHtml,
-            // scriptLoading: "defer",
           },
           isEnvProduction
             ? {
-                // scriptLoading: "defer",
                 minify: {
                   removeComments: true,
                   collapseWhitespace: true,
@@ -535,10 +536,7 @@ module.exports = function (webpackEnv) {
                 cdn: {
                   js: [],
                 },
-              },
-          {
-            scriptLoading: "defer",
-          }
+              }
         )
       ),
       // Inlines the webpack runtime script. This script is too small to warrant
@@ -642,6 +640,10 @@ module.exports = function (webpackEnv) {
           formatter: isEnvProduction ? typescriptFormatter : undefined,
         }),
       new BundleAnalyzerPlugin(),
+
+      new ScriptExtHtmlWebpackPlugin({
+        defer: /\.js$/,
+      }),
     ].filter(Boolean),
     externals: isEnvProduction
       ? {

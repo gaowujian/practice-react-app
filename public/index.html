@@ -23,7 +23,7 @@
     -->
     <title>React App</title>
     <% for( var js of htmlWebpackPlugin.options.cdn.js) {%>
-    <script src="<%=js%>"></script>
+    <script defer src="<%=js%>"></script>
     <% } %>
   </head>
   <body>

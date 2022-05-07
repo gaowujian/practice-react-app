@@ -1,4 +1,6 @@
-import { HomeOutlined, SmileOutlined, UserOutlined } from "@ant-design/icons";
+import HomeOutlined from "@ant-design/icons/HomeOutlined";
+import SmileOutlined from "@ant-design/icons/SmileOutlined";
+import UserOutlined from "@ant-design/icons/UserOutlined";
 import { Affix, Breadcrumb, Button, Divider, Dropdown, Menu, Pagination, Typography, PageHeader, Tabs } from "antd";
 import React, { useState } from "react";
 import { Link, Route, withRouter } from "react-router-dom";

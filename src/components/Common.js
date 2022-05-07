@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Button, message, Typography } from "antd";
-import { HomeOutlined, SmileTwoTone, SmileFilled } from "@ant-design/icons";
+import HomeOutlined from "@ant-design/icons/HomeOutlined";
+import SmileTwoTone from "@ant-design/icons/SmileTwoTone";
+import SmileFilled from "@ant-design/icons/SmileFilled";
 
 const { Title, Paragraph, Text, Link } = Typography;
 function Common() {

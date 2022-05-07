@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Avatar } from "antd";
-import { UserOutlined } from "@ant-design/icons";
+import UserOutlined from "@ant-design/icons/UserOutlined";
 import ProLayout, { SettingDrawer } from "@ant-design/pro-layout";
 // import defaultProps from "./_defaultProps";
 

@@ -1,6 +1,10 @@
 import React from "react";
 import { Typography, Divider, Alert, Drawer, Button, message, Modal, Space, notification, Popconfirm, Skeleton, Spin } from "antd";
-import { SmileOutlined, ExclamationCircleFilled, BookOutlined, UserOutlined, LoadingOutlined } from "@ant-design/icons";
+import SmileOutlined from "@ant-design/icons/SmileOutlined";
+import ExclamationCircleFilled from "@ant-design/icons/ExclamationCircleFilled";
+import BookOutlined from "@ant-design/icons/BookOutlined";
+import UserOutlined from "@ant-design/icons/UserOutlined";
+import LoadingOutlined from "@ant-design/icons/LoadingOutlined";
 import { useState } from "react";
 
 const { Title } = Typography;

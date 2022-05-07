@@ -1,4 +1,4 @@
-import { UploadOutlined } from "@ant-design/icons";
+import UploadOutlined from "@ant-design/icons/UploadOutlined";
 import { Button, Card, Col, Divider, Layout, Popconfirm, Row, Space, Typography, Upload } from "antd";
 import React from "react";
 const { Title } = Typography;

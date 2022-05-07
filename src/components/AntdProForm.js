@@ -12,7 +12,12 @@ import ProForm, {
   ProFormRadio,
   LoginForm,
 } from "@ant-design/pro-form";
-import { AlipayCircleOutlined, LockOutlined, PlusOutlined, TaobaoCircleOutlined, UserOutlined, WeiboCircleOutlined } from "@ant-design/icons";
+import AlipayCircleOutlined from "@ant-design/icons/AlipayCircleOutlined";
+import LockOutlined from "@ant-design/icons/LockOutlined";
+import PlusOutlined from "@ant-design/icons/PlusOutlined";
+import TaobaoCircleOutlined from "@ant-design/icons/TaobaoCircleOutlined";
+import UserOutlined from "@ant-design/icons/UserOutlined";
+import WeiboCircleOutlined from "@ant-design/icons/WeiboCircleOutlined";
 
 const iconStyles = {
   marginLeft: "16px",
