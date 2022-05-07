@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Button, Descriptions, Result, Avatar, Space, Statistic } from "antd";
-import { LikeOutlined, UserOutlined } from "@ant-design/icons";
-import ProLayout, { PageContainer, SettingDrawer, PageLoading } from "@ant-design/pro-layout";
+import { Avatar } from "antd";
+import { UserOutlined } from "@ant-design/icons";
+import ProLayout, { SettingDrawer } from "@ant-design/pro-layout";
 // import defaultProps from "./_defaultProps";
 
 export default (props) => {
@@ -88,7 +88,7 @@ export default (props) => {
         title="高级布局title"
         // pure={true}
         // loading={true}
-        location={props.history.location}
+
         // fixedHeader
         // fixSiderbar
         route={{

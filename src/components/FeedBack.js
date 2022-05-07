@@ -171,7 +171,7 @@ function FeedBack() {
                 icon: <ExclamationCircleFilled />,
                 content: modalText,
                 onOk() {
-                  return new Promise((resolve, reject) => {
+                  return new Promise((resolve) => {
                     setConfirmLoading(true);
                     let i = 2;
                     const timer = setInterval(() => {

@@ -133,9 +133,7 @@ function Navigation(props) {
       <Divider />
       <p>最重要的是overlay属性，可以自定义下拉菜单的内容</p>
       <Paragraph style={{ color: "green" }}>Select 用于选择，而 Dropdown 是命令集合。</Paragraph>
-      <Paragraph style={{ color: "green" }}>
-        封装组件的时候也主要使用的是render props的应用, children是显示的内容,overlay是下拉弹出的内容
-      </Paragraph>
+      <Paragraph style={{ color: "green" }}>封装组件的时候也主要使用的是render props的应用, children是显示的内容,overlay是下拉弹出的内容</Paragraph>
       <br />
       <Paragraph style={{ color: "blue" }}>普通的dropdown和button类型的dropdown</Paragraph>
       <ol>
@@ -231,7 +229,7 @@ function Navigation(props) {
           console.log("page:", page);
           console.log("pageSize:", pageSize);
         }}
-        onShowSizeChange={(current, size) => {
+        onShowSizeChange={(_current, size) => {
           setCurrentPageSize(size);
         }}
         pageSizeOptions={[5, 10, 20]}

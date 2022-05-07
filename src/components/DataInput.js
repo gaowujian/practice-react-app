@@ -79,10 +79,6 @@ function DataInput() {
   }
 
   const [sliderValue, setSliderValue] = useState(20);
-  const autocomplteOptions = [
-    { label: "qq邮箱", value: "qq.com" },
-    { label: "126邮箱", value: "126.com" },
-  ];
 
   const checkBoxOptions = [
     { label: "Apple", value: "Apweeple" },
