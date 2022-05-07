@@ -247,22 +247,22 @@ module.exports = function (webpackEnv) {
         chunks: "all",
         name: false,
         // maxSize: 300000,
-        cacheGroups: {
-          vendors: {
-            name: "vendors",
-            test: /[\\/]node_modules[\\/]/,
-            priority: -10,
-            reuseExistingChunk: true,
-            // filename: "[name][chunkhash]~bundle.js",
-          },
-          commons: {
-            name: "commons",
-            minChunks: 2, // 至少有两个chunk里引用了同一个module才有必要拆分, 多页应用，或者import()异步加载
-            priority: -20,
-            reuseExistingChunk: true,
-            // filename: "[name][chunkhash]~bundle.js",
-          },
-        },
+        // cacheGroups: {
+        //   vendors: {
+        //     name: "vendors",
+        //     test: /[\\/]node_modules[\\/]/,
+        //     priority: -10,
+        //     reuseExistingChunk: true,
+        //     // filename: "[name][chunkhash]~bundle.js",
+        //   },
+        //   commons: {
+        //     name: "commons",
+        //     minChunks: 2, // 至少有两个chunk里引用了同一个module才有必要拆分, 多页应用，或者import()异步加载
+        //     priority: -20,
+        //     reuseExistingChunk: true,
+        //     // filename: "[name][chunkhash]~bundle.js",
+        //   },
+        // },
       },
       // Keep the runtime chunk separated to enable long term caching
       // https://twitter.com/wSokra/status/969679223278505985

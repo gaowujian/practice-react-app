@@ -1,4 +1,4 @@
-import { Menu } from "antd";
+import { Menu, Spin } from "antd";
 import React, { Suspense } from "react";
 import { HashRouter as Router, Link, Route, Switch } from "react-router-dom";
 // 懒加载
@@ -81,7 +81,7 @@ function App() {
 
       <div className="container">
         <div className="demo-area">
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Spin />}>
             <Switch>
               <Route path="/" exact component={Common} />
               <Route path="/layout" component={Layout} />
