@@ -644,6 +644,12 @@ module.exports = function (webpackEnv) {
       new ScriptExtHtmlWebpackPlugin({
         defer: /\.js$/,
       }),
+      new CompressionWebpackPlugin({
+        test: /\.(js|css)(\?.*)?$/i,
+        threshold: 1024 * 30, // 30K
+        minRatio: 0.8,
+        exclude: /node_modules/,
+      }),
     ].filter(Boolean),
     externals: isEnvProduction
       ? {
