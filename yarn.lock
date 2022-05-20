@@ -1910,6 +1910,11 @@
   resolved "https://registry.npmmirror.com/@umijs/use-params/download/@umijs/use-params-1.0.7.tgz#a8636906fb1a9df0ab3d71414af87bf0370b5f61"
   integrity sha1-qGNpBvsanfCrPXFBSvh78DcLX2E=
 
+"@vue/preload-webpack-plugin@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.npmmirror.com/@vue/preload-webpack-plugin/-/preload-webpack-plugin-2.0.0.tgz#a43bfc087e91f7d0efb0086100148f4b16437b68"
+  integrity sha512-RoorRB50WehYbsiWu497q8egZBYlrvOo9KBUG41uth4O023Cbs+7POLm9uw2CAiViBAIhvpw1Y4w4i+MZxOfXw==
+
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.8.5.tgz#51b1c5fe6576a34953bf4b253df9f0d490d9e359"

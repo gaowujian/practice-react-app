@@ -25,6 +25,7 @@ const typescriptFormatter = require("react-dev-utils/typescriptFormatter");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
 const CompressionWebpackPlugin = require("compression-webpack-plugin");
+const PreloadWebpackPlugin = require("@vue/preload-webpack-plugin");
 
 const postcssNormalize = require("postcss-normalize");
 
@@ -650,6 +651,10 @@ module.exports = function (webpackEnv) {
         minRatio: 0.8,
         exclude: /node_modules/,
       }),
+      // new PreloadWebpackPlugin({
+      //   rel: "preload",
+      //   include: "asyncChunks",
+      // }),
     ].filter(Boolean),
     externals: isEnvProduction
       ? {
