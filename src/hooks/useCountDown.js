@@ -3,13 +3,27 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 function useCountDown(options = {}) {
   const initial = options.initial || 10;
   const [count, setCount] = useState(initial);
-  const isMounted = useRef(false);
 
   const reset = useCallback(() => {
     setCount(initial);
   }, [initial]);
 
+  //   planA
+  const ref = useRef(count);
+  ref.current = count;
+  const startCount = useCallback(() => {
+    const interval = setInterval(() => {
+      if (ref.current !== 0) {
+        setCount(ref.current - 1);
+      } else {
+        clearInterval(interval);
+        reset();
+      }
+    }, 1000);
+  }, [reset]);
+
   //   planB
+  //   const isMounted = useRef(false);
   //   const startCount = function () {
   //     setCount(count - 1);
   //   };
@@ -34,20 +48,6 @@ function useCountDown(options = {}) {
   //       }
   //     };
   //   }, [count, initial, reset]);
-
-  //   planA
-  const ref = useRef(count);
-  ref.current = count;
-  const startCount = useCallback(() => {
-    const interval = setInterval(() => {
-      if (ref.current !== 0) {
-        setCount(ref.current - 1);
-      } else {
-        clearInterval(interval);
-        reset();
-      }
-    }, 1000);
-  }, [reset]);
 
   return [count, startCount];
 }
