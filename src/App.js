@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
+import useCountDown from "./hooks/useCountDown";
 
-const style = {
-  height: "100vh",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
+let last;
+const App = () => {
+  const [count, startCount] = useCountDown({ initial: 5 });
+  console.log("last===count:", last === startCount);
+  last = startCount;
+  return (
+    <div>
+      <p>{count}</p>
+      <button onClick={startCount}>开始</button>
+    </div>
+  );
 };
-function App() {
-  return <div style={style}>一个默认的本地空白项目用于练习各种不同的想法</div>;
-}
-
 export default App;
