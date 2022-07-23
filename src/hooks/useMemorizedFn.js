@@ -1,17 +1,30 @@
 import { useMemo } from "react";
 import { useRef } from "react";
 
-// 可以反应一个组件是否卸载，卸载了为true，没有卸载是false
+// 1. 确保该hook返回的函数在多次渲染的过程中保持同一引用
+
 function useMemorizedFn(fn) {
-  const memorizedFnRef = useRef(fn);
+  // 我们用ref来缓存一个最新的fn
+  const latestFnRef = useRef(fn);
   // todo为什么不是用如下
   // ref.current = fn;
+  latestFnRef.current = useMemo(() => fn, [fn]);
 
-  memorizedFnRef.current = useMemo(() => fn, [fn]);
+  // 第一种方式 useRef创建一个 memorizedFnRef 来缓存一个地址不变的函数
+  const memorizedFnRef = useRef();
 
-  return function (...args) {
-    memorizedFnRef.current(...args);
-  };
+  if (!memorizedFnRef.current) {
+    memorizedFnRef.current = function (...args) {
+      latestFnRef.current(...args);
+      // fn(...args);
+    };
+  }
+  return memorizedFnRef.current;
+
+  // 第二种方式 ，使用空依赖的useCallback 来缓存一个地址不变的函数
+  // return useCallback((...args) => {
+  //   latestFnRef.current(...args);
+  // }, []);
 }
 
 export default useMemorizedFn;

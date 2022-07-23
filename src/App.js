@@ -5,12 +5,13 @@ import {
   // useUnmountedRef,
   useUpdateEffect,
   useUpdateLayoutEffect,
+  // useMemoizedFn,
 } from "ahooks";
 
 import { useEffect } from "react";
 import { useReducer } from "react";
 import { useState } from "react";
-import { useUnmountedRef, useMount, useMemorizedFn, useUnmount } from "./hooks";
+import { useUnmountedRef, useMount, useUnmount, useMemoizedFn } from "./hooks";
 import { useCallback } from "react";
 
 const style = {
@@ -54,20 +55,40 @@ function Child() {
 }
 let last;
 let showNum;
+/* eslint-disable */
 function App() {
   const [num, forceUpdate] = useReducer((count) => count + 1, 0);
 
   const [childVisible, setChildVisible] = useState(false);
 
-  const showNum = useMemorizedFn(function () {
-    alert(num);
+  showNum = useMemoizedFn(function () {
+    setTimeout(() => {
+      alert(num);
+    }, 2000);
   });
+  console.log(showNum === last);
 
+  last = showNum;
+
+  // showNum = useCallback(
+  //   function () {
+  //     alert(num);
+  //   },
+  //   [num]
+  // );
+  // console.log(showNum === last);
+  // last = showNum;
   return (
     <div style={style}>
       {childVisible && <Child />}
       <div>counter计数器:{num}</div>
-      <button onClick={showNum}>展示数字</button>
+      <button
+        onClick={() => {
+          showNum(num);
+        }}
+      >
+        展示数字
+      </button>
       <button onClick={forceUpdate}>强制更新</button>
       <button
         onClick={() => {
