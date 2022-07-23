@@ -1,54 +1,24 @@
 import React from "react";
-import {
-  // useMount,
-  // useUnmount,
-  // useUnmountedRef,
-  useUpdateEffect,
-  useUpdateLayoutEffect,
-  // useSetState,
-  // useMemoizedFn,
-} from "ahooks";
+// import { useBoolean } from "ahooks";
+import { useBoolean } from "./hooks";
 
-import { useEffect } from "react";
-import { useReducer } from "react";
-import { useState } from "react";
-import {
-  useUnmountedRef,
-  useMount,
-  useUnmount,
-  useMemoizedFn,
-  useSetState,
-} from "./hooks";
-import { useCallback } from "react";
-
-const App = () => {
-  const [state, setState] = useSetState({
-    hello: "",
-    count: 0,
-  });
+export default () => {
+  const [state, { toggle, setTrue, setFalse }] = useBoolean(10);
 
   return (
     <div>
-      <pre>{JSON.stringify(state, null, 2)}</pre>
+      <p>Effects：{JSON.stringify(state)}</p>
       <p>
-        <button type="button" onClick={() => setState({ hello: "world" })}>
-          set hello
+        <button type="button" onClick={toggle}>
+          Toggle
         </button>
-        <button
-          type="button"
-          onClick={() => setState({ foo: "bar" })}
-          style={{ margin: "0 8px" }}
-        >
-          set foo
+        <button type="button" onClick={setFalse} style={{ margin: "0 16px" }}>
+          Set false
         </button>
-        <button
-          type="button"
-          onClick={() => setState((prev) => ({ count: prev.count + 1 }))}
-        >
-          count + 1
+        <button type="button" onClick={setTrue}>
+          Set true
         </button>
       </p>
     </div>
   );
 };
-export default App;
