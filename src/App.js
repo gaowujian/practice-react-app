@@ -1,9 +1,8 @@
 import React from "react";
-// import { useBoolean } from "ahooks";
 import { useBoolean } from "./hooks";
 
 export default () => {
-  const [state, { toggle, setTrue, setFalse }] = useBoolean(10);
+  const [state, { toggle, setTrue, setFalse }] = useBoolean(true);
 
   return (
     <div>
