@@ -1,0 +1,18 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+div:not(#root) {
+  padding: 50px;
+  border: 1px solid black;
+}
+ul li {
+  margin-top: 10px;
+
+  list-style-position: inside;
+  list-style-type: decimal;
+}
+
+#parent {
+  margin-left: 100px;
+}
